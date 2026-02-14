@@ -112,9 +112,8 @@ dmypy.json
 .pyre/
 
 # Large data files (custom for this project)
-data/raw/**/*
-data/processed/*.geojson  # If >50MB; commit small subsets
-data/processed/*.parquet  # Large national files
+data/raw/*
+data/processed/*
 outputs/figures/*.png
 outputs/figures/*.pdf
 outputs/exports/*.mbtiles
