@@ -1,15 +1,16 @@
 # Socioeconomic Composite Index (SCI) Weights
-# Positives sum to 1.0 (base score); negatives are penalties subtracted (total impact ~ -0.28 max)
+# Positives sum to 1.0 (base score); negatives are penalties subtracted (total impact ~ -0.20 max)
 # Sources: Dictionary CSV (e.g., GRAPROES #134 for education, POCUPADA #141 for employment)
 # Expanded to 18 proxies for ~85% SES variance; adjust for tuning (e.g., +0.05 to housing for urban focus)
 
-education: 0.30      # GRAPROES (avg years), P15YM_AN (% illiterate, inverse), P18YM_PB (% post-basic)
-employment: 0.25     # POCUPADA (% occupied)
-poverty_goods: 0.20  # VPH_REFRI (% fridge), VPH_PC (% PC), VPH_AUTOM (% car), VPH_LAVAD (% washer)
-housing_quality: 0.10 # VPH_PISODT (% non-dirt floors)
-services_access: 0.15 # VPH_AGUADV (% water), VPH_C_ELEC (% elec), VPH_DRENAJ (% drainage), VPH_TELEF (% phone)
-overcrowding: -0.10   # PRO_OCUP_C (ppl/room, inverse)
-marginalization: -0.05 # P3YM_HLI (% indigenous, inverse)
-dependency: -0.05     # POB0_14 (% youth, inverse), POB65_MAS (% elderly, inverse)
-female_headed: -0.04  # HOGJEF_F (% female-led, inverse)
-gender_balance: -0.04 # REL_H_M (sex ratio deviation, inverse)
+education:        0.34     # schooling + post-basic attainment; treat illiteracy as a penalty inside education or as badness
+employment:       0.22     # employment/participation proxy (use correct denom, e.g., PEA if available)
+poverty_goods:    0.15     # durable goods / assets (car, fridge, washer, computer, internet)
+housing_quality:  0.12     # quality of dwelling (rooms, solid materials); treat dirt-floor as badness
+services_access:  0.17     # piped water, drainage, electricity, internet/phone
+
+overcrowding:    -0.10     # persons/room or PRO_OCUP_C as BADNESS (higher=worse)
+marginalization: -0.05     # DEPRIVATION BADNESS (no drainage/water/electricity + dirt floor); NOT ethnicity/language
+dependency:      -0.05     # dependency ratio BADNESS (higher=worse)
+female_headed:   -0.03     # optional light penalty; keep small to avoid biasing too hard
+gender_balance:   0.00     # keep disabled
